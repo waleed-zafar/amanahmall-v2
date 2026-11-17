@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Amanah Mall — Direction A · Architectural Luxury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Hanken+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   DIRECTION A — ARCHITECTURAL LUXURY
+   Idea: the mall as a building. Column lines, an arched
+   entrance that opens on scroll, floors you walk through.
+   Tokens map 1:1 to WordPress theme.json later.
+   ========================================================== */
+:root{
+  --ink:#06201f; --teal:#0d4744; --mist:#dfe5e1; --paper:#f5f6f3; --gold:#c8a15a;
+  --line:rgba(200,161,90,.38);
+  --serif:"Bodoni Moda",Georgia,serif; --sans:"Hanken Grotesk",system-ui,sans-serif;
+  --pad:clamp(20px,4vw,64px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:300 1.0625rem/1.7 var(--sans);overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+/* column lines: the building's structural grid */
+body::before{content:"";position:fixed;inset:0 var(--pad);z-index:40;pointer-events:none;
+  border-right:1px solid var(--line);
+  background:linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/25% 100%}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.w__in{display:inline-block}
+
+/* header */
+.hdr{position:fixed;inset:0 0 auto;z-index:60;display:flex;justify-content:space-between;align-items:center;
+  padding:16px var(--pad);color:#fff;transition:background .4s,color .4s}
+.hdr.is-solid{background:rgba(245,246,243,.94);color:var(--ink);backdrop-filter:blur(8px)}
+.hdr__logo img{height:38px;filter:brightness(0) invert(1);transition:filter .4s}
+.hdr.is-solid .hdr__logo img{filter:none}
+.hdr__nav{display:flex;gap:clamp(14px,2.6vw,40px);font-size:.9rem;letter-spacing:.04em}
+.hdr__nav a,.hdr__cta{position:relative}
+.hdr__nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.hdr__nav a:hover::after{transform:scaleX(1)}
+.hdr__cta{border:1px solid currentColor;padding:8px 20px;font-size:.85rem;transition:background .3s,color .3s}
+.hdr__cta:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+@media(max-width:820px){.hdr__nav{display:none}}
+
+/* hero: arched entrance */
+.hero{height:100vh;height:100svh;position:relative;background:var(--ink);color:#fff;overflow:hidden}
+.hero__media{position:absolute;inset:0;clip-path:inset(14svh 31vw 8svh 31vw round 40vw 40vw 0 0)}
+.hero__media video,.hero__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero__media::after{content:"";position:absolute;inset:0;background:rgba(6,32,31,.28)}
+.hero__title{position:absolute;inset:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;
+  padding:0 var(--pad) 15svh;font:400 clamp(2.9rem,12.4vw,12rem)/.85 var(--serif);letter-spacing:-.035em;pointer-events:none}
+.hero__word{display:block;overflow:hidden;padding-bottom:.12em}
+.ch{display:inline-block}
+.hero__sub{position:absolute;z-index:2;left:var(--pad);bottom:5svh;font:italic 400 clamp(1rem,1.5vw,1.35rem)/1.3 var(--serif);max-width:22ch}
+.hero__scroll{position:absolute;z-index:2;right:var(--pad);bottom:5svh;font-size:.78rem;letter-spacing:.2em;writing-mode:vertical-rl;display:flex;align-items:center;gap:12px}
+.hero__scroll::after{content:"";width:1px;height:48px;background:var(--gold)}
+@media(max-width:700px){
+  .hero__media{clip-path:inset(18svh 14vw 22svh 14vw round 50vw 50vw 0 0)}
+  .hero__title{font-size:11.5vw;padding-bottom:9svh}.hero__scroll{display:none}
+}
+
+/* shared type */
+.eyebrow{font-size:.85rem;letter-spacing:.08em;color:var(--teal);margin-bottom:1.4rem}
+.h2{font:400 clamp(2.3rem,5.2vw,5rem)/1.02 var(--serif);letter-spacing:-.02em}
+.h2 em{font-style:italic;color:var(--teal)}
+.link{display:inline-flex;gap:12px;align-items:center;border-bottom:1px solid var(--gold);padding-bottom:4px;margin-top:2rem;font-weight:400}
+.link:hover{gap:20px}.link{transition:gap .3s}
+
+/* story */
+.story{padding:clamp(90px,14vw,200px) var(--pad);display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px;align-items:start}
+.story__head{grid-column:1/8}
+.story__body{grid-column:8/13;margin-top:clamp(2rem,10vw,9rem);max-width:46ch}
+.story__img{grid-column:2/8;margin-top:clamp(3rem,8vw,8rem)}
+.arch{overflow:hidden;border-radius:50vw 50vw 0 0;aspect-ratio:4/5;background:var(--mist)}
+.arch img{width:100%;height:120%;object-fit:cover}
+@media(max-width:820px){.story__head,.story__body,.story__img{grid-column:1/-1}.story__img{margin-top:3rem}}
+
+/* levels: horizontal walk through the entertainment floors */
+.levels{background:var(--ink);color:#f1f3ef;overflow:hidden}
+.levels__pin{height:100vh;height:100svh;display:flex;align-items:center}
+.levels__track{display:flex;gap:clamp(40px,6vw,100px);padding:0 var(--pad);width:max-content;align-items:center}
+.levels__intro{width:min(42vw,560px);flex:none}
+.levels__intro .eyebrow{color:var(--gold)}
+.levels__intro p:last-child{margin-top:1.6rem;opacity:.75;max-width:40ch}
+.level{display:flex;gap:clamp(20px,3vw,48px);align-items:flex-end;flex:none}
+.level__fig{width:min(34vw,470px);height:62vh;overflow:hidden;border-radius:50vw 50vw 0 0;position:relative}
+.level__fig img{position:absolute;top:0;left:-13%;width:130%;height:100%;object-fit:cover}
+.level__txt{width:min(24vw,340px);padding-bottom:1rem}
+.level__txt h3{font:400 clamp(1.7rem,2.7vw,2.6rem)/1.05 var(--serif);margin:.5rem 0 1rem}
+.level__tag{color:var(--gold);font-size:.85rem;letter-spacing:.06em}
+.level__txt p,.level__txt li{font-size:.95rem;opacity:.8;line-height:1.6}
+.level__txt li{padding:6px 0;border-top:1px solid rgba(200,161,90,.3)}
+.level__txt ul{margin:1rem 0}
+.level__acts{display:flex;gap:16px;flex-wrap:wrap}
+.level__acts a{border-bottom:1px solid var(--gold);font-size:.85rem;padding-bottom:2px}
+@media(max-width:900px){
+  .levels__pin{height:auto;display:block;padding:80px 0}
+  .levels__track{display:block;width:auto}
+  .levels__intro,.level__fig,.level__txt{width:100%}
+  .level{display:block;margin-top:56px}.level__fig{height:56vh;margin-bottom:20px}
+}
+
+/* event band */
+.event{position:relative;min-height:88vh;display:grid;align-items:end;color:#fff;overflow:hidden;background:var(--teal)}
+.event__bg{position:absolute;inset:-12% 0;background:var(--teal)}
+.event__bg img{width:100%;height:100%;object-fit:cover;opacity:.5}
+.event__in{position:relative;padding:var(--pad);display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end;padding-bottom:clamp(70px,9vw,130px)}
+.event__t{grid-column:1/8}.event__d{grid-column:9/13;font-size:1rem}
+.event__t p:first-child{font-size:.85rem;letter-spacing:.08em;color:var(--gold);margin-bottom:1rem}
+.event__run{position:absolute;top:calc(var(--pad) + 60px);left:0;white-space:nowrap;font:italic 400 clamp(3rem,9vw,8rem)/1 var(--serif);opacity:.14}
+@media(max-width:820px){.event__t,.event__d{grid-column:1/-1}}
+
+/* partners: a plan of hairline bays */
+.part{padding:clamp(80px,12vw,170px) var(--pad)}
+.part__head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:clamp(2.5rem,6vw,5rem);align-items:end}
+.part__head .h2{grid-column:1/8}.part__head p{grid-column:9/13;max-width:34ch}
+.wall{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.wall__cell{aspect-ratio:16/10;display:grid;place-items:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden;transition:background .4s}
+.wall__cell img{max-width:56%;max-height:46%;object-fit:contain;transition:transform .5s}
+.wall__cell::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.wall__cell:hover{background:var(--mist)}.wall__cell:hover::after{transform:scaleX(1)}.wall__cell:hover img{transform:scale(1.08)}
+@media(max-width:820px){.wall{grid-template-columns:repeat(2,1fr)}.part__head .h2,.part__head p{grid-column:1/-1}}
+
+/* news index */
+.news{padding:0 var(--pad) clamp(80px,12vw,160px)}
+.news__row{display:grid;grid-template-columns:140px 1fr 40px;gap:24px;align-items:baseline;padding:28px 0;border-top:1px solid var(--line);transition:padding .4s,background .4s}
+.news__row:last-child{border-bottom:1px solid var(--line)}
+.news__row:hover{padding-left:20px;background:var(--mist)}
+.news__cat{font-size:.82rem;color:var(--teal)}
+.news__row h3{font:400 clamp(1.3rem,2.3vw,2.1rem)/1.15 var(--serif)}
+.news__row p{font-size:.95rem;opacity:.7;max-width:62ch;margin-top:.5rem}
+@media(max-width:700px){.news__row{grid-template-columns:1fr}.news__row span:last-child{display:none}}
+
+/* timings: a drawing schedule */
+.time{background:var(--teal);color:#f1f3ef;padding:clamp(80px,12vw,160px) var(--pad)}
+.time .h2 em{color:var(--gold)}
+.time__row{display:grid;grid-template-columns:1.2fr 1.3fr 1fr;gap:24px;padding:26px 0;border-top:1px solid rgba(200,161,90,.4);align-items:baseline}
+.time__row:last-child{border-bottom:1px solid rgba(200,161,90,.4)}
+.time__row h3{font:400 1.6rem/1.1 var(--serif)}.time__row p{opacity:.75;font-size:.95rem}
+.time__row strong{font-weight:400;color:var(--gold);display:block}
+.time__list{margin-top:clamp(2rem,5vw,4rem)}
+@media(max-width:820px){.time__row{grid-template-columns:1fr;gap:6px}}
+
+/* visit + footer */
+.visit{padding:clamp(80px,12vw,160px) var(--pad);display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.visit .h2{grid-column:1/7}.visit__list{grid-column:8/13;display:grid;gap:1.6rem}
+.visit__list dt{font-size:.85rem;color:var(--teal)}.visit__list dd{font:400 1.3rem/1.35 var(--serif)}
+@media(max-width:820px){.visit .h2,.visit__list{grid-column:1/-1}}
+.ftr{background:var(--ink);color:#e8ece8;padding:60px var(--pad) 40px;display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:center;font-size:.9rem}
+.ftr img{height:44px}.ftr nav{display:flex;gap:24px;flex-wrap:wrap}.ftr__soc{display:flex;gap:10px}.ftr__soc img{height:34px}
+.ftr small{width:100%;opacity:.6;border-top:1px solid rgba(200,161,90,.3);padding-top:24px}
+
+/* prototype switcher (remove for production) */
+.dir{position:fixed;left:12px;bottom:12px;z-index:90;display:flex;gap:2px;background:#fff;border:1px solid var(--line);padding:3px;font-size:.8rem}
+.dir a{padding:5px 11px}.dir a[aria-current]{background:var(--ink);color:#fff}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <a class="hdr__logo" href="#top" aria-label="Amanah Mall home"><img src="https://amanahmall.vercel.app/images/imgi_3_amanah-mall-logo.webp" alt="Amanah Mall"></a>
+  <nav class="hdr__nav" aria-label="Primary"><a href="#">Home</a><a href="#partners">Brands</a><a href="#levels">Entertainment</a><a href="#news">Blog</a><a href="#visit">Mall Info</a></nav>
+  <a class="hdr__cta" href="#visit">Contact Us</a>
+</header>
+
+<main id="top">
+  <!-- HERO: arched entrance opens to full bleed -->
+  <section class="hero" id="hero">
+    <div class="hero__media" id="heroMedia">
+      <img src="https://amanahmall.vercel.app/images/Amanah-Mall_39303cb1b331bed9ea59a94c0491037e.png" alt="">
+      <video id="heroVideo" muted loop playsinline autoplay preload="metadata"><source src="https://amanahmall.vercel.app/videos/videoplayback-ezgif.com-video-compressor.mp4" type="video/mp4"></video>
+    </div>
+    <h1 class="hero__title" aria-label="Amanah Mall"><span class="hero__word" data-chars>Amanah</span><span class="hero__word" data-chars>Mall</span></h1>
+    <p class="hero__sub">Lahore's premier civic destination</p>
+    <span class="hero__scroll">Scroll to explore</span>
+  </section>
+
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="story__head">
+      <p class="eyebrow">Our architectural heritage, Model Town</p>
+      <h2 class="h2" data-words>A Cosmopolitan Nexus Built for Family &amp; Culture</h2>
+    </div>
+    <div class="story__body" data-fade>
+      <p>Amanah Mall is the largest and most-visited retail shopping mall, located in the heart of model town link road Lahore, Pakistan. Amanah Mall is one of the best Kids Play land spots in Lahore, offering wholesome entertainment with a wide range of activities like trampoline, VR games, indoor rides, world-class cinema, and premier dining for your whole family.</p>
+      <a class="link" href="#">Read the General Manager's Message <span>→</span></a>
+    </div>
+    <div class="story__img"><div class="arch" data-reveal><img data-parallax src="https://amanahmall.vercel.app/images/Amanah-Mall_39303cb1b331bed9ea59a94c0491037e.png" alt="Amanah Mall exterior" loading="lazy" decoding="async"></div></div>
+  </section>
+
+  <!-- LEVELS: horizontal walk -->
+  <section class="levels" id="levels">
+    <div class="levels__pin" id="levelsPin">
+      <div class="levels__track" id="levelsTrack">
+        <div class="levels__intro">
+          <p class="eyebrow">Unmatched amusements</p>
+          <h2 class="h2">Entertainment &amp; Fun Zone!</h2>
+          <p>From adrenaline-fueled indoor rides and immersive VR to premier cinema screenings, American cue sports, and wellness.</p>
+        </div>
+        <article class="level">
+          <figure class="level__fig"><img src="https://amanahmall.vercel.app/images/cinema-pic.jpg" alt="Cinepax cinema" loading="lazy" decoding="async"></figure>
+          <div class="level__txt">
+            <p class="level__tag">Multi-screen 3D &amp; Atmos</p>
+            <h3>Cinepax Cinema Zone</h3>
+            <p>Watch the latest blockbuster movies in expansive wide and 3D screens with crystal soundscapes.</p>
+            <ul><li>Check daily show timings and seat bookings seamlessly</li><li>Open 7 days a week as per normal show schedules</li><li>Luxury VIP recliner lounge seating options</li></ul>
+            <div class="level__acts"><a href="#">Book tickets online</a><a href="#">View showtimes</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <figure class="level__fig"><img src="https://amanahmall.vercel.app/images/compress-images-6.jpg" alt="Magic Planet kids amusements" loading="lazy" decoding="async"></figure>
+          <div class="level__txt">
+            <p class="level__tag">Family &amp; kids favorite</p>
+            <h3>Magic Planet &amp; VR Park</h3>
+            <p>Trampoline, VR games, indoor rides and lots more for your whole family.</p>
+            <ul><li>Mon – Sat: 12:00 PM – 09:00 PM</li></ul>
+            <div class="level__acts"><a href="#">Explore rides</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <figure class="level__fig"><img src="https://amanahmall.vercel.app/images/bouncing-1.jpg" alt="Trampoline park" loading="lazy" decoding="async"></figure>
+          <div class="level__txt">
+            <p class="level__tag">Indoor agility arena</p>
+            <h3>Trampoline Park</h3>
+            <p>Bounce on wall-to-wall interconnected trampoline beds, dive into foam pits, test balance on ninja courses and celebrate birthdays with dedicated supervisors.</p>
+            <ul><li>All ages welcome, daily sessions</li></ul>
+            <div class="level__acts"><a href="#">View guidelines</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT -->
+  <section class="event" id="events">
+    <div class="event__bg" data-bgpar><img src="https://amanahmall.vercel.app/images/compress-images-7.jpg" alt="" loading="lazy" decoding="async"></div>
+    <div class="event__run" id="eventRun" aria-hidden="true">Discover what's happening ✦ Explore the latest ✦ Discover what's happening ✦ Explore the latest</div>
+    <div class="event__in">
+      <div class="event__t"><p>Happenings at the mall</p><h2 class="h2" data-words>Patriotic Gala Azadi Mubarak Celebrations</h2></div>
+      <div class="event__d" data-fade><p>Commemorating national unity with live acoustic orchestral performances, kids face-painting, flag hoisting, and special seasonal discounts throughout the weekend.</p><a class="link" href="#">All Events <span>→</span></a></div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="part" id="partners">
+    <div class="part__head"><h2 class="h2" data-words>They bring ideas <em>into reality</em></h2><p data-fade>Explore all 19+ authentic flagship partners housed within Amanah Mall.</p></div>
+    <ul class="wall" id="wall"></ul>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news" id="news">
+    <p class="eyebrow">The District Gazette</p>
+    <h2 class="h2" style="margin-bottom:3rem" data-words>Latest News &amp; Updates</h2>
+    <div id="newsList"></div>
+    <a class="link" href="#">All Articles <span>→</span></a>
+  </section>
+
+  <!-- TIMINGS -->
+  <section class="time" id="timings">
+    <p class="eyebrow" style="color:var(--gold)">Operational schedule</p>
+    <h2 class="h2" data-words>Mall &amp; Facility Timings</h2>
+    <div class="time__list">
+      <div class="time__row" data-fade><h3>Retail Shops &amp; Kiosks</h3><p>All brands, fashion, cosmetics &amp; accessories</p><p><strong>Mon – Sat: 12:00 PM – 09:00 PM</strong>Sun: 02:00 PM – 09:00 PM</p></div>
+      <div class="time__row" data-fade><h3>Food Court &amp; Restaurants</h3><p>Indoor cafes, ice cream parlours &amp; dining</p><p><strong>Mon – Sat: 12:00 PM – 10:00 PM</strong>Sun: 02:00 PM – 10:00 PM</p></div>
+      <div class="time__row" data-fade><h3>Play Areas</h3><p>Magic Planet &amp; Trampoline. VR zone, rides, indoor jumping arena</p><p><strong>Mon – Sat: 12:00 PM – 09:00 PM</strong>Sun: 02:00 PM – 09:00 PM</p></div>
+      <div class="time__row" data-fade><h3>Velocity Fitness Club</h3><p>Gymnasium, cardio, weights, trainers</p><p><strong>Mon – Sat: 07:00 AM – 10:00 PM</strong>3-min drive</p></div>
+      <div class="time__row" data-fade><h3>Cinepax Cinema</h3><p>Multiplex 3D screens</p><p><strong>Monday – Sunday</strong>As per normal show timings</p></div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit" id="visit">
+    <div><p class="eyebrow">Civic wayfinding</p><h2 class="h2" data-words>Plan Your Visit</h2></div>
+    <dl class="visit__list" data-fade>
+      <div><dt>Mall address</dt><dd><a href="https://www.google.com/maps?cid=5050039981506575630&hl=en-US">Link Road, Model Town, Lahore, Punjab, Pakistan</a></dd></div>
+      <div><dt>Telephone</dt><dd><a href="tel:04235131699">042 3513 1699 / 3513 1700</a></dd></div>
+      <div><dt>Official correspondence</dt><dd><a href="mailto:info@amanahmall.com.pk">info@amanahmall.com.pk</a></dd></div>
+    </dl>
+  </section>
+</main>
+
+<footer class="ftr">
+  <img src="https://amanahmall.vercel.app/images/imgi_3_amanah-mall-logo.webp" alt="Amanah Mall" style="filter:brightness(0) invert(1)">
+  <nav aria-label="Footer"><a href="#">Home</a><a href="#partners">Brands</a><a href="#levels">Entertainment</a><a href="#news">Blog</a><a href="#visit">Mall Info</a></nav>
+  <div class="ftr__soc"><a href="#"><img src="https://amanahmall.vercel.app/images/svg-code-48x48.png" alt="Social"></a><a href="#"><img src="https://amanahmall.vercel.app/images/svg-code-48x48 (1).png" alt="Social"></a><a href="#"><img src="https://amanahmall.vercel.app/images/svg-code-48x48 (2).png" alt="Social"></a></div>
+  <small>© 2026 Amanah Mall Lahore. All rights reserved. · Privacy Policy · Terms &amp; Conditions</small>
+</footer>
+
+<nav class="dir" aria-label="Design directions"><a href="amanah-a-architectural-luxury.html" aria-current="page">A</a><a href="amanah-b-editorial-lifestyle.html">B</a><a href="amanah-c-immersive-digital.html">C</a><a href="amanah-d-modern-urban.html">D</a></nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* ---------- DATA (becomes ACF repeaters later) ---------- */
+const IMG="https://amanahmall.vercel.app/images/";
+const PARTNERS=[["Breakout","breakout.png"],["Limelight","limelight.png"],["Lakhany","lakhany-1.png"],["Edenrobe","edenrobe.png"],["Uniworth","uniworth.png"],["Diners","diners-1.png"],["Charcoal","charcoal-1.png"],["Monark","monark-.png"],["Saya","saya-2.png"],["J.","J-1.png"],["Hemani","hemani.png"],["Saeed Ghani","saeed-ghani-1.png"],["Humna Momina","humna-momina.png"],["Miandad","miandad.png"],["Bonanza","BONANZA-1.png"],["Unze","unze-1.png"]];
+const NEWS=[
+ ["Entertainment, Fashion","Amanah Shopping Festival 2026 – Shop More, Smile More This Ramzan","Ramzan brings blessings, reflection, and togetherness. It also brings the joy of Eid shopping."],
+ ["Fashion","How Shopping Malls Increase Brand Visibility in Lahore","Lahore is one of Pakistan's most competitive retail markets. New brands enter the market every month."],
+ ["Fashion","Top Fashion Brands to Explore at Amanah Mall Lahore","Amanah Mall Lahore stands as one of the city's premier shopping destinations."],
+ ["Entertainment, Fashion","Why Families Prefer Amanah Mall for Weekend Outings","Weekends are the perfect time for families to relax, bond, and have fun together."],
+ ["Games & Fun","Benefits of Play Areas for Children's Development","Childhood has changed. Many children now spend more time on screens than in playgrounds."]];
+document.getElementById("wall").innerHTML=PARTNERS.map(([n,f])=>`<li class="wall__cell"><img src="${IMG+f}" alt="${n}" loading="lazy" decoding="async"></li>`).join("");
+document.getElementById("newsList").innerHTML=NEWS.map(([c,t,d])=>`<a class="news__row" href="#"><span class="news__cat">${c}</span><div><h3>${t}</h3><p>${d}</p></div><span>→</span></a>`).join("");
+
+/* ---------- HELPERS ---------- */
+function splitWords(el){const t=el.textContent.trim();el.setAttribute("aria-label",t);
+  el.innerHTML=t.split(" ").map(w=>`<span class="w" aria-hidden="true"><span class="w__in">${w}</span></span>`).join(" ");return el.querySelectorAll(".w__in")}
+function splitChars(el){const t=el.textContent.trim();el.innerHTML=[...t].map(c=>`<span class="ch">${c}</span>`).join("");return el.querySelectorAll(".ch")}
+const $=(s,r=document)=>[...r.querySelectorAll(s)];
+
+/* ---------- MOTION ---------- */
+gsap.registerPlugin(ScrollTrigger);
+const vid=document.getElementById("heroVideo");
+ScrollTrigger.create({start:60,onUpdate:s=>document.getElementById("hdr").classList.toggle("is-solid",s.scroll()>window.innerHeight*.9)});
+
+const mm=gsap.matchMedia();
+mm.add({desktop:"(min-width:901px)",mobile:"(max-width:900px)",reduce:"(prefers-reduced-motion: reduce)"},ctx=>{
+  const {desktop,reduce}=ctx.conditions;
+  if(reduce){vid.removeAttribute("autoplay");vid.pause();return}
+
+  /* 1. Hero: letters rise, then the arch opens as you scroll (pinned) */
+  const chars=$("[data-chars]").flatMap(el=>[...splitChars(el)]);
+  gsap.from(chars,{yPercent:115,duration:1.3,ease:"expo.out",stagger:.06,delay:.2});
+  gsap.from("#heroMedia",{clipPath:"inset(60svh 31vw 8svh 31vw round 40vw 40vw 0 0)",duration:1.6,ease:"expo.out"});
+  const fromClip=desktop?"inset(14svh 31vw 8svh 31vw round 40vw 40vw 0 0)":"inset(18svh 14vw 22svh 14vw round 50vw 50vw 0 0)";
+  gsap.timeline({scrollTrigger:{trigger:"#hero",start:"top top",end:"+=90%",pin:true,scrub:.7}})
+    .fromTo("#heroMedia",{clipPath:fromClip},{clipPath:"inset(0svh 0vw 0svh 0vw round 0vw 0vw 0 0)",ease:"none"},0)
+    .to(".hero__word:first-child",{xPercent:-18,opacity:0,ease:"none"},0.15)
+    .to(".hero__word:last-child",{xPercent:18,opacity:0,ease:"none"},0.15)
+    .to(".hero__sub,.hero__scroll",{opacity:0,ease:"none"},0);
+
+  /* 2. Headings: word masks lift in */
+  $("[data-words]").forEach(h=>{
+    gsap.from(splitWords(h),{yPercent:110,duration:1,ease:"expo.out",stagger:.07,scrollTrigger:{trigger:h,start:"top 85%"}});
+  });
+  $("[data-fade]").forEach(el=>gsap.from(el,{opacity:0,y:30,duration:1,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 90%"}}));
+
+  /* 3. Arch image: reveal from the base, inner parallax */
+  $("[data-reveal]").forEach(el=>gsap.from(el,{clipPath:"inset(100% 0 0 0)",duration:1.6,ease:"expo.out",scrollTrigger:{trigger:el,start:"top 80%"}}));
+  $("[data-parallax]").forEach(img=>gsap.fromTo(img,{yPercent:-9},{yPercent:9,ease:"none",scrollTrigger:{trigger:img.parentElement,start:"top bottom",end:"bottom top",scrub:true}}));
+
+  /* 4. Levels: pinned horizontal walk (desktop only), parallax inside each frame */
+  if(desktop){
+    const track=document.getElementById("levelsTrack");
+    const dist=()=>track.scrollWidth-window.innerWidth;
+    const walk=gsap.to(track,{x:()=>-dist(),ease:"none",scrollTrigger:{trigger:"#levelsPin",pin:true,scrub:.6,end:()=>"+="+dist(),invalidateOnRefresh:true}});
+    $(".level__fig img").forEach(img=>gsap.fromTo(img,{xPercent:-8},{xPercent:8,ease:"none",scrollTrigger:{trigger:img.parentElement,containerAnimation:walk,start:"left right",end:"right left",scrub:true}}));
+  }
+
+  /* 5. Event: background parallax + drifting marquee line */
+  gsap.fromTo("[data-bgpar]",{yPercent:-8},{yPercent:8,ease:"none",scrollTrigger:{trigger:"#events",start:"top bottom",end:"bottom top",scrub:true}});
+  gsap.fromTo("#eventRun",{x:"10vw"},{x:"-45vw",ease:"none",scrollTrigger:{trigger:"#events",start:"top bottom",end:"bottom top",scrub:true}});
+
+  /* 6. Partner bays & news rows stagger in */
+  gsap.from(".wall__cell",{opacity:0,duration:.9,stagger:{each:.05,from:"start"},ease:"power2.out",scrollTrigger:{trigger:"#wall",start:"top 80%"}});
+  gsap.from(".news__row",{opacity:0,y:24,duration:.9,stagger:.1,ease:"power3.out",scrollTrigger:{trigger:"#newsList",start:"top 85%"}});
+});
+</script>
+</body>
+</html>

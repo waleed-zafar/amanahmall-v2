@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Amanah Mall — Direction B · Editorial Lifestyle District</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Familjen+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   DIRECTION B — EDITORIAL LIFESTYLE DISTRICT
+   Idea: the mall as a city magazine. Masthead cover, stacked
+   feature spreads, an A–Z brand index, a district gazette.
+   ========================================================== */
+:root{
+  --paper:#edf1ea; --ink:#0d2220; --teal:#0f5c57; --deep:#093b38; --gold:#e3a92c; --mint:#cddfd3;
+  --serif:"Instrument Serif",Georgia,serif; --sans:"Familjen Grotesk",system-ui,sans-serif;
+  --pad:clamp(18px,3.4vw,56px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--sans);overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.ch{display:inline-block}
+.mask{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+
+/* top bar */
+.bar{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px var(--pad);
+  mix-blend-mode:normal;transition:transform .5s,background .4s}
+.bar.is-hidden{transform:translateY(-100%)}
+.bar.is-bg{background:rgba(237,241,234,.92);backdrop-filter:blur(8px)}
+.bar img{height:36px}
+.bar nav{display:flex;gap:clamp(14px,2.4vw,34px);font-weight:500;font-size:.95rem}
+.bar nav a:hover{color:var(--teal);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+.bar__cta{background:var(--ink);color:var(--paper);padding:9px 20px;border-radius:99px;font-size:.9rem;font-weight:500;transition:background .3s}
+.bar__cta:hover{background:var(--teal)}
+@media(max-width:820px){.bar nav{display:none}}
+
+/* masthead cover */
+.cover{position:relative;min-height:100svh;padding:110px var(--pad) 40px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.cover__meta{display:flex;justify-content:space-between;font-size:.92rem;border-bottom:1.5px solid var(--ink);padding-bottom:10px}
+.cover__title{position:relative;z-index:1;font:400 clamp(5rem,26vw,28rem)/.76 var(--serif);letter-spacing:-.045em;margin:clamp(1rem,4vw,3rem) 0 0 -.03em}
+.cover__title .l2{display:block;font-style:italic;text-align:right;color:var(--teal);margin-top:-.04em;padding-right:.04em}
+.cover__img{position:absolute;z-index:2;object-fit:cover;box-shadow:0 20px 50px rgba(9,59,56,.22)}
+.cover__img--1{width:clamp(130px,23vw,380px);aspect-ratio:4/3;left:5vw;top:46%;transform:rotate(-5deg)}
+.cover__img--2{width:clamp(110px,15vw,250px);aspect-ratio:3/4;right:8vw;top:17%;transform:rotate(6deg)}
+.cover__img--3{width:clamp(110px,17vw,290px);aspect-ratio:1;left:42vw;top:55%;transform:rotate(3deg)}
+.cover__img--4{width:clamp(100px,13vw,220px);aspect-ratio:4/5;right:3vw;top:58%;transform:rotate(-4deg)}
+.cover__foot{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.cover__tag{font:400 clamp(1.4rem,2.6vw,2.4rem)/1.1 var(--serif);max-width:14ch}
+.badge{width:clamp(96px,10vw,140px);aspect-ratio:1;position:relative}
+.badge svg{width:100%;height:100%;overflow:visible}
+.badge text{font:500 11.2px var(--sans);fill:var(--ink)}
+.badge::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:1.8rem;color:var(--teal)}
+@media(max-width:700px){.cover__img--3,.cover__img--4{display:none}.cover__img--1{top:52%;left:4vw}.cover__img--2{top:22%;right:4vw}}
+
+/* ribbon */
+.ribbon{background:var(--teal);color:var(--paper);overflow:hidden;padding:16px 0;white-space:nowrap;font:italic 400 clamp(1.6rem,3vw,2.6rem)/1 var(--serif)}
+.ribbon div{display:inline-block;will-change:transform}
+
+/* cover story */
+.story{padding:clamp(80px,12vw,180px) var(--pad);display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.story__k{grid-column:1/4;font-size:.92rem;border-top:1.5px solid var(--ink);padding-top:10px;align-self:start}
+.story__h{grid-column:4/13;font:400 clamp(2.6rem,6.6vw,7rem)/.96 var(--serif);letter-spacing:-.025em}
+.story__h em{color:var(--teal)}
+.story__cols{grid-column:4/13;columns:2;column-gap:40px;margin-top:2.5rem;max-width:760px}
+.story__cols p::first-letter{font:400 5.2rem/.8 var(--serif);float:left;padding:6px 10px 0 0;color:var(--teal)}
+.story__cols a{display:inline-block;margin-top:1.4rem;font-weight:600;border-bottom:2px solid var(--gold)}
+@media(max-width:820px){.story__k,.story__h,.story__cols{grid-column:1/-1}.story__cols{columns:1}}
+
+/* feature spreads: pinned stack */
+.spread{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.spread--a{background:var(--deep);color:var(--paper);z-index:1}
+.spread--b{background:var(--gold);color:var(--ink);z-index:2}
+.spread--c{background:var(--mint);color:var(--ink);z-index:3}
+.spread__img{position:relative;overflow:hidden}
+.spread__img img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover}
+.spread__txt{padding:clamp(80px,9vw,120px) var(--pad) var(--pad);display:flex;flex-direction:column;justify-content:flex-end}
+.spread__txt h3{font:400 clamp(2.8rem,6.2vw,6.8rem)/.92 var(--serif);letter-spacing:-.025em;margin:.6rem 0 1.4rem}
+.spread__txt p{max-width:44ch}.spread__txt ul{margin:1.2rem 0;border-top:1.5px solid currentColor}
+.spread__txt li{padding:8px 0;border-bottom:1px solid currentColor;font-size:.95rem}
+.spread__k{font-size:.92rem;font-weight:500}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:1rem}
+.btn{padding:11px 22px;border-radius:99px;border:1.5px solid currentColor;font-weight:500;font-size:.92rem;transition:background .3s,color .3s}
+.btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.spread--b .spread__img,.spread--c .spread__img{order:2}
+.spread-head{padding:clamp(70px,10vw,150px) var(--pad) 40px;background:var(--deep);color:var(--paper);position:relative;z-index:1}
+.spread-head h2{font:400 clamp(2.6rem,6vw,6rem)/.95 var(--serif);letter-spacing:-.02em;max-width:14ch}
+.spread-head p{max-width:46ch;margin-top:1.4rem;opacity:.8}
+@media(max-width:820px){.spread{position:relative;height:auto;grid-template-columns:1fr}.spread__img{height:50svh}.spread--b .spread__img,.spread--c .spread__img{order:0}.spread__txt{padding-top:30px;padding-bottom:50px}}
+
+/* events */
+.event{padding:clamp(90px,13vw,190px) var(--pad);position:relative;overflow:hidden}
+.event h2{font:400 clamp(3rem,10.5vw,12rem)/.82 var(--serif);letter-spacing:-.04em}
+.event h2 span{display:block}.event h2 span:nth-child(2){font-style:italic;padding-left:12vw;color:var(--teal)}
+.event__row{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:3rem;align-items:end}
+.event__p{grid-column:6/12}
+.event__img{grid-column:1/5;overflow:hidden;aspect-ratio:4/3}.event__img img{width:100%;height:120%;object-fit:cover}
+.event__p h3{font:400 1.8rem/1.1 var(--serif);margin-bottom:.8rem}
+.event__sticker{position:absolute;right:clamp(16px,6vw,100px);top:clamp(60px,9vw,140px);width:clamp(100px,11vw,160px);aspect-ratio:1;border-radius:50%;background:var(--gold);display:grid;place-items:center;text-align:center;font:italic 400 1.5rem/1 var(--serif);transform:rotate(12deg);transition:transform .4s}
+.event__sticker:hover{transform:rotate(-8deg) scale(1.08)}
+@media(max-width:820px){.event__p,.event__img{grid-column:1/-1}.event h2 span:nth-child(2){padding-left:0}}
+
+/* brand index */
+.index{background:var(--ink);color:var(--paper);padding:clamp(80px,12vw,170px) var(--pad)}
+.index__top{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:end;margin-bottom:3rem}
+.index__top h2{font:400 clamp(2.4rem,5.5vw,5.6rem)/.95 var(--serif);letter-spacing:-.02em}
+.index__top p{max-width:32ch;opacity:.75}
+.index__list{font:400 clamp(2.4rem,7.2vw,8rem)/1.02 var(--serif);letter-spacing:-.03em}
+.index__list li{display:inline}
+.index__list a{transition:opacity .3s,color .3s}
+.index__list li::after{content:" / ";color:var(--gold);opacity:.7;font-style:normal}
+.index__list li:last-child::after{content:""}
+.index__list:hover a{opacity:.25}.index__list a:hover{opacity:1;color:var(--gold);font-style:italic}
+.index__list img{display:none}
+@media(hover:none){.index__list img{display:inline-block;height:1em;margin-right:.2em;vertical-align:-.1em}}
+.peek{position:fixed;left:0;top:0;z-index:70;width:clamp(160px,16vw,240px);aspect-ratio:4/3;background:#fff;display:grid;place-items:center;padding:20px;
+  pointer-events:none;opacity:0;transform:scale(.7) rotate(-6deg);box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.peek img{max-height:100%;object-fit:contain}
+.peek--ph{padding:0}.peek--ph img{width:100%;height:100%;object-fit:cover}
+
+/* gazette */
+.gaz{padding:clamp(80px,12vw,170px) var(--pad)}
+.gaz__top{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;border-bottom:1.5px solid var(--ink);padding-bottom:20px}
+.gaz__top h2{font:400 clamp(2.4rem,6vw,6rem)/.95 var(--serif);letter-spacing:-.025em}
+.gaz__lead{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(20px,4vw,60px);padding:36px 0;border-bottom:1.5px solid var(--ink);align-items:center}
+.gaz__lead .ph{aspect-ratio:16/10;overflow:hidden}.gaz__lead img{width:100%;height:118%;object-fit:cover}
+.gaz__lead h3{font:400 clamp(2rem,4vw,4rem)/1 var(--serif);letter-spacing:-.02em;margin:.5rem 0 1rem}
+.gaz__k{font-size:.92rem;color:var(--teal);font-weight:600}
+.gaz__row{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:24px 0;border-bottom:1px solid rgba(13,34,32,.35);transition:background .3s,padding .3s}
+.gaz__row:hover{background:var(--mint);padding-left:16px}
+.gaz__row h3{font:400 clamp(1.5rem,2.6vw,2.4rem)/1.08 var(--serif)}
+.gaz__row p{opacity:.7;max-width:60ch;margin-top:.4rem;font-size:.97rem}
+@media(max-width:820px){.gaz__lead{grid-template-columns:1fr}.gaz__row{grid-template-columns:1fr;gap:4px}}
+
+/* hours */
+.hours{background:var(--gold);padding:clamp(80px,12vw,160px) var(--pad)}
+.hours h2{font:400 clamp(2.6rem,7vw,7rem)/.92 var(--serif);letter-spacing:-.03em;margin-bottom:3rem;max-width:11ch}
+.hours__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0}
+.hours__item{padding:26px 24px 30px 0;border-top:1.5px solid var(--ink)}
+.hours__item img{height:34px;margin-bottom:18px}
+.hours__item h3{font:400 1.9rem/1.05 var(--serif);margin-bottom:.4rem}
+.hours__item p{font-size:.96rem}.hours__item strong{display:block;font-weight:600;margin-top:.8rem}
+
+/* colophon */
+.colo{background:var(--deep);color:var(--paper);padding:clamp(70px,10vw,140px) var(--pad) 36px}
+.colo__big{font:400 clamp(3rem,15vw,17rem)/.8 var(--serif);letter-spacing:-.045em;margin-bottom:3rem}
+.colo__big em{color:var(--gold)}
+.colo__cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px}
+.colo__cols dt{font-size:.88rem;opacity:.6}.colo__cols dd{font:400 1.45rem/1.25 var(--serif)}
+.colo__bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center;margin-top:60px;padding-top:24px;border-top:1px solid rgba(255,255,255,.25);font-size:.9rem}
+.colo__bot img{height:34px;display:inline-block;margin-right:8px}
+
+.dir{position:fixed;left:12px;bottom:12px;z-index:90;display:flex;gap:2px;background:#fff;border:1px solid rgba(0,0,0,.2);padding:3px;font-size:.8rem}
+.dir a{padding:5px 11px}.dir a[aria-current]{background:var(--ink);color:#fff}
+</style>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <a href="#top" aria-label="Amanah Mall home"><img src="https://amanahmall.vercel.app/images/imgi_3_amanah-mall-logo.webp" alt="Amanah Mall"></a>
+  <nav aria-label="Primary"><a href="#">Home</a><a href="#index">Brands</a><a href="#features">Entertainment</a><a href="#gazette">Blog</a><a href="#hours">Mall Info</a></nav>
+  <a class="bar__cta" href="#visit">Contact Us</a>
+</header>
+
+<main id="top">
+  <!-- COVER -->
+  <section class="cover">
+    <div class="cover__meta"><span>Link Road, Model Town, Lahore</span><span>The mall, in print</span></div>
+    <h1 class="cover__title" aria-label="Amanah Mall"><span class="l1 mask" data-chars>Amanah</span><span class="l2 mask" data-chars>Mall</span></h1>
+    <img class="cover__img cover__img--1" data-speed="-60" src="https://amanahmall.vercel.app/images/Amanah-Mall_39303cb1b331bed9ea59a94c0491037e.png" alt="Amanah Mall building">
+    <img class="cover__img cover__img--2" data-speed="-110" src="https://amanahmall.vercel.app/images/bouncing-1.jpg" alt="Trampoline park">
+    <img class="cover__img cover__img--3" data-speed="-30" src="https://amanahmall.vercel.app/images/compress-images-6.jpg" alt="Magic Planet" loading="lazy">
+    <img class="cover__img cover__img--4" data-speed="-90" src="https://amanahmall.vercel.app/images/compress-images-7.jpg" alt="Family entertainment" loading="lazy">
+    <div class="cover__foot">
+      <p class="cover__tag">Lahore's premier civic destination</p>
+      <div class="badge" aria-hidden="true"><svg viewBox="0 0 100 100" id="badge"><defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs><text><textPath href="#circ">Scroll to explore ✦ Scroll to explore ✦ Scroll to explore ✦</textPath></text></svg></div>
+    </div>
+  </section>
+
+  <div class="ribbon" aria-hidden="true"><div id="ribbon">Discover what's happening ✦ Explore the latest ✦ Discover what's happening ✦ Explore the latest ✦ Discover what's happening ✦ Explore the latest ✦ Discover what's happening ✦ Explore the latest ✦</div></div>
+
+  <!-- COVER STORY -->
+  <section class="story">
+    <p class="story__k">Our architectural heritage · Model Town</p>
+    <h2 class="story__h" data-lines>A Cosmopolitan Nexus Built for <em>Family &amp; Culture</em></h2>
+    <div class="story__cols" data-fade>
+      <p>Amanah Mall is the largest and most-visited retail shopping mall, located in the heart of model town link road Lahore, Pakistan. Amanah Mall is one of the best Kids Play land spots in Lahore, offering wholesome entertainment with a wide range of activities like trampoline, VR games, indoor rides, world-class cinema, and premier dining for your whole family.</p>
+      <a href="#">Read the General Manager's Message →</a>
+    </div>
+  </section>
+
+  <!-- FEATURE SPREADS -->
+  <div id="features">
+    <div class="spread-head"><p class="spread__k">Unmatched amusements</p><h2>Entertainment &amp; Fun Zone!</h2><p>From adrenaline-fueled indoor rides and immersive VR to premier cinema screenings, American cue sports, and wellness.</p></div>
+
+    <article class="spread spread--a">
+      <div class="spread__txt"><p class="spread__k">Multi-screen 3D &amp; Atmos</p><h3>Cinepax Cinema Zone</h3>
+        <p>Cinepax in Amanah shopping mall is the ultimate cinema for movie-lovers. Watch the latest blockbuster movies in expansive wide and 3D screens with crystal soundscapes.</p>
+        <ul><li>Check daily show timings and seat bookings seamlessly</li><li>Open 7 days a week as per normal show schedules</li><li>Luxury VIP recliner lounge seating options</li></ul>
+        <div class="btns"><a class="btn" href="#">Book tickets online</a><a class="btn" href="#">View showtimes</a></div></div>
+      <div class="spread__img"><img src="https://amanahmall.vercel.app/images/cinema-pic.jpg" alt="Cinepax cinema" loading="lazy" decoding="async"></div>
+    </article>
+
+    <article class="spread spread--b">
+      <div class="spread__txt"><p class="spread__k">Family &amp; kids favorite</p><h3>Magic Planet &amp; VR Park</h3>
+        <p>Amanah Mall is one of the best Kids Play land spots in Lahore. We offer wholesome entertainment with wide range of activities like trampoline, VR games, indoor rides and lots more for your whole family.</p>
+        <ul><li>Mon – Sat: 12:00 PM – 09:00 PM</li></ul>
+        <div class="btns"><a class="btn" href="#">Explore rides</a></div></div>
+      <div class="spread__img"><img src="https://amanahmall.vercel.app/images/compress-images-6.jpg" alt="Magic Planet" loading="lazy" decoding="async"></div>
+    </article>
+
+    <article class="spread spread--c">
+      <div class="spread__txt"><p class="spread__k">Indoor agility arena</p><h3>Trampoline Park</h3>
+        <p>Bounce freely on wall-to-wall interconnected trampoline beds, dive into super-safe foam pits, test balance on ninja courses, and celebrate high-energy birthday parties with dedicated supervisors.</p>
+        <ul><li>All ages welcome</li><li>Daily sessions</li></ul>
+        <div class="btns"><a class="btn" href="#">View guidelines</a></div></div>
+      <div class="spread__img"><img src="https://amanahmall.vercel.app/images/bouncing-1.jpg" alt="Trampoline park" loading="lazy" decoding="async"></div>
+    </article>
+  </div>
+
+  <!-- EVENT -->
+  <section class="event">
+    <a class="event__sticker" href="#">All Events</a>
+    <h2 aria-label="Happenings at the mall"><span data-chars-line>Happenings</span><span data-chars-line>at the mall</span></h2>
+    <div class="event__row">
+      <div class="event__img"><img data-par src="https://amanahmall.vercel.app/images/compress-images-7.jpg" alt="" loading="lazy" decoding="async"></div>
+      <div class="event__p" data-fade><h3>Patriotic Gala Azadi Mubarak Celebrations</h3><p>Commemorating national unity with live acoustic orchestral performances, kids face-painting, flag hoisting, and special seasonal discounts throughout the weekend. Experience cultural festivals, designer exhibitions, seasonal celebrations, and festive bazaars happening all year round.</p></div>
+    </div>
+  </section>
+
+  <!-- BRAND INDEX -->
+  <section class="index" id="index">
+    <div class="index__top"><h2>They bring ideas into reality</h2><p>Explore all 19+ authentic flagship partners housed within Amanah Mall.</p></div>
+    <ul class="index__list" id="brandList"></ul>
+  </section>
+
+  <!-- GAZETTE -->
+  <section class="gaz" id="gazette">
+    <div class="gaz__top"><div><p class="gaz__k">The District Gazette</p><h2>Latest News &amp; Updates</h2></div><a class="btn" href="#">All Articles</a></div>
+    <a class="gaz__lead" href="#">
+      <div class="ph"><img data-par src="https://amanahmall.vercel.app/images/compress-images-6.jpg" alt="" loading="lazy" decoding="async"></div>
+      <div><p class="gaz__k">Entertainment, Fashion</p><h3>Amanah Shopping Festival 2026 – Shop More, Smile More This Ramzan</h3><p>Ramzan brings blessings, reflection, and togetherness. It also brings the joy of Eid shopping. Families prepare for Eid with excitement....</p></div>
+    </a>
+    <div id="gazRows"></div>
+  </section>
+
+  <!-- HOURS -->
+  <section class="hours" id="hours">
+    <h2 data-fade>Mall &amp; Facility Timings</h2>
+    <div class="hours__grid">
+      <div class="hours__item" data-stag><img src="https://amanahmall.vercel.app/images/connect1.svg" alt=""><h3>Retail Shops &amp; Kiosks</h3><p>All brands, fashion, cosmetics &amp; accessories</p><strong>Mon – Sat: 12:00 PM – 09:00 PM</strong><p>Sun: 02:00 PM – 09:00 PM</p></div>
+      <div class="hours__item" data-stag><img src="https://amanahmall.vercel.app/images/connect2.svg" alt=""><h3>Food Court &amp; Restaurants</h3><p>Indoor cafes, ice cream parlours &amp; dining</p><strong>Mon – Sat: 12:00 PM – 10:00 PM</strong><p>Sun: 02:00 PM – 10:00 PM</p></div>
+      <div class="hours__item" data-stag><img src="https://amanahmall.vercel.app/images/connect3.svg" alt=""><h3>Play Areas</h3><p>Magic Planet &amp; Trampoline: VR zone, rides, indoor jumping arena</p><strong>Mon – Sat: 12:00 PM – 09:00 PM</strong><p>Sun: 02:00 PM – 09:00 PM</p></div>
+      <div class="hours__item" data-stag><img src="https://amanahmall.vercel.app/images/connect4.svg" alt=""><h3>Velocity Fitness Club</h3><p>Gymnasium, cardio, weights, trainers</p><strong>Mon – Sat: 07:00 AM – 10:00 PM</strong><p>3-min drive</p></div>
+      <div class="hours__item" data-stag><img src="https://amanahmall.vercel.app/images/connect5.svg" alt=""><h3>Cinepax Cinema</h3><p>Multiplex 3D screens</p><strong>Monday – Sunday</strong><p>As per normal show timings</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="colo" id="visit">
+  <p class="colo__big" aria-label="Plan your visit">Plan your <em>visit</em></p>
+  <dl class="colo__cols">
+    <div><dt>Mall address</dt><dd><a href="https://www.google.com/maps?cid=5050039981506575630&hl=en-US">Link Road, Model Town, Lahore, Punjab, Pakistan</a></dd></div>
+    <div><dt>Telephone</dt><dd><a href="tel:04235131699">042 3513 1699 / 3513 1700</a></dd></div>
+    <div><dt>Official correspondence</dt><dd><a href="mailto:info@amanahmall.com.pk">info@amanahmall.com.pk</a></dd></div>
+  </dl>
+  <div class="colo__bot"><span><img src="https://amanahmall.vercel.app/images/imgi_3_amanah-mall-logo.webp" alt="Amanah Mall" style="filter:brightness(0) invert(1)"> © 2026 Amanah Mall Lahore. All rights reserved.</span>
+    <span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    <span><a href="#"><img src="https://amanahmall.vercel.app/images/svg-code-48x48.png" alt="Social"></a><a href="#"><img src="https://amanahmall.vercel.app/images/svg-code-48x48 (1).png" alt="Social"></a><a href="#"><img src="https://amanahmall.vercel.app/images/svg-code-48x48 (2).png" alt="Social"></a></span></div>
+</footer>
+
+<div class="peek" id="peek" aria-hidden="true"><img alt=""></div>
+<nav class="dir" aria-label="Design directions"><a href="amanah-a-architectural-luxury.html">A</a><a href="amanah-b-editorial-lifestyle.html" aria-current="page">B</a><a href="amanah-c-immersive-digital.html">C</a><a href="amanah-d-modern-urban.html">D</a></nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* ---------- DATA ---------- */
+const IMG="https://amanahmall.vercel.app/images/";
+const PARTNERS=[["Breakout","breakout.png"],["Limelight","limelight.png"],["Lakhany","lakhany-1.png"],["Edenrobe","edenrobe.png"],["Uniworth","uniworth.png"],["Diners","diners-1.png"],["Charcoal","charcoal-1.png"],["Monark","monark-.png"],["Saya","saya-2.png"],["J.","J-1.png"],["Hemani","hemani.png"],["Saeed Ghani","saeed-ghani-1.png"],["Humna Momina","humna-momina.png"],["Miandad","miandad.png"],["Bonanza","BONANZA-1.png"],["Unze","unze-1.png"]];
+const NEWS=[
+ ["Fashion","How Shopping Malls Increase Brand Visibility in Lahore","Lahore is one of Pakistan's most competitive retail markets. New brands enter the market every month."],
+ ["Fashion","Top Fashion Brands to Explore at Amanah Mall Lahore","Amanah Mall Lahore stands as one of the city's premier shopping destinations."],
+ ["Entertainment, Fashion","Why Families Prefer Amanah Mall for Weekend Outings","Weekends are the perfect time for families to relax, bond, and have fun together."],
+ ["Games & Fun","Benefits of Play Areas for Children's Development","Childhood has changed. Many children now spend more time on screens than in playgrounds."]];
+document.getElementById("brandList").innerHTML=PARTNERS.map(([n,f])=>`<li><a href="#" data-logo="${IMG+f}"><img src="${IMG+f}" alt="" loading="lazy">${n}</a></li>`).join("");
+document.getElementById("gazRows").innerHTML=NEWS.map(([c,t,d])=>`<a class="gaz__row" href="#"><span class="gaz__k">${c}</span><div><h3>${t}</h3><p>${d}</p></div></a>`).join("");
+
+const $=(s,r=document)=>[...r.querySelectorAll(s)];
+function splitChars(el){const t=el.textContent.trim();el.innerHTML=[...t].map(c=>c===" "?" ":`<span class="ch">${c}</span>`).join("");return el.querySelectorAll(".ch")}
+
+/* ---------- MOTION ---------- */
+gsap.registerPlugin(ScrollTrigger);
+
+/* bar hides on scroll down, returns on scroll up (state only, no motion preference issue) */
+const bar=document.getElementById("bar");let lastY=0;
+ScrollTrigger.create({onUpdate:s=>{const y=s.scroll();bar.classList.toggle("is-hidden",y>lastY&&y>200);bar.classList.toggle("is-bg",y>80);lastY=y}});
+
+const mm=gsap.matchMedia();
+mm.add({desktop:"(min-width:821px)",reduce:"(prefers-reduced-motion: reduce)",hover:"(hover:hover)"},ctx=>{
+  const {desktop,reduce,hover}=ctx.conditions;
+  if(reduce)return;
+
+  /* 1. Masthead: letters tumble up, photos land one by one, badge spins */
+  gsap.from(splitChars($(".l1")[0]),{yPercent:120,rotate:6,duration:1.2,ease:"expo.out",stagger:.07,delay:.15});
+  gsap.from(splitChars($(".l2")[0]),{yPercent:120,rotate:-6,duration:1.2,ease:"expo.out",stagger:.09,delay:.55});
+  gsap.from(".cover__img",{opacity:0,scale:.7,y:80,duration:1.2,ease:"back.out(1.4)",stagger:.15,delay:.9});
+  gsap.to("#badge",{rotation:360,duration:18,ease:"none",repeat:-1,transformOrigin:"50% 50%"});
+  $(".cover__img").forEach(img=>gsap.to(img,{y:parseFloat(img.dataset.speed),ease:"none",scrollTrigger:{trigger:".cover",start:"top top",end:"bottom top",scrub:true}}));
+
+  /* 2. Ribbon drifts with scroll */
+  gsap.to("#ribbon",{xPercent:-35,ease:"none",scrollTrigger:{trigger:".ribbon",start:"top bottom",end:"bottom top",scrub:.5}});
+
+  /* 3. Story headline: line-by-line mask */
+  const h=$("[data-lines]")[0];
+  gsap.from(h,{yPercent:18,opacity:0,duration:1.4,ease:"expo.out",scrollTrigger:{trigger:h,start:"top 85%"}});
+  $("[data-fade]").forEach(el=>gsap.from(el,{opacity:0,y:30,duration:1,ease:"power3.out",scrollTrigger:{trigger:el,start:"top 88%"}}));
+
+  /* 4. Spreads: each one shrinks back as the next slides over it; photo parallax */
+  if(desktop){
+    $(".spread").forEach((s,i,all)=>{
+      if(all[i+1])gsap.to(s,{scale:.94,opacity:.5,ease:"none",scrollTrigger:{trigger:all[i+1],start:"top bottom",end:"top top",scrub:true}});
+      gsap.fromTo(s.querySelector(".spread__img img"),{yPercent:-5},{yPercent:5,ease:"none",scrollTrigger:{trigger:s,start:"top bottom",end:"bottom top",scrub:true}});
+    });
+  }
+
+  /* 5. Event headline & photo */
+  $("[data-chars-line]").forEach((l,i)=>gsap.from(splitChars(l),{yPercent:100,opacity:0,duration:1,ease:"expo.out",stagger:.04,scrollTrigger:{trigger:l,start:"top 90%"}}));
+  $("[data-par]").forEach(img=>gsap.fromTo(img,{yPercent:-8},{yPercent:2,ease:"none",scrollTrigger:{trigger:img.parentElement,start:"top bottom",end:"bottom top",scrub:true}}));
+
+  /* 6. Hours */
+  gsap.from("[data-stag]",{opacity:0,y:40,duration:.9,stagger:.12,ease:"power3.out",scrollTrigger:{trigger:".hours__grid",start:"top 85%"}});
+  gsap.from(".gaz__row",{opacity:0,y:24,duration:.8,stagger:.1,ease:"power3.out",scrollTrigger:{trigger:"#gazRows",start:"top 88%"}});
+
+  /* 7. Brand index: logo follows the cursor */
+  if(hover){
+    const peek=document.getElementById("peek"),pimg=peek.querySelector("img");
+    const mx=gsap.quickTo(peek,"x",{duration:.5,ease:"power3"}),my=gsap.quickTo(peek,"y",{duration:.5,ease:"power3"});
+    window.addEventListener("pointermove",e=>{mx(e.clientX+24);my(e.clientY-60)});
+    $("[data-logo]").forEach(a=>{
+      a.addEventListener("pointerenter",()=>{pimg.src=a.dataset.logo;gsap.to(peek,{opacity:1,scale:1,rotate:-3,duration:.35,ease:"back.out(2)"})});
+      a.addEventListener("pointerleave",()=>gsap.to(peek,{opacity:0,scale:.7,rotate:-6,duration:.25}));
+    });
+  }
+});
+</script>
+</body>
+</html>
